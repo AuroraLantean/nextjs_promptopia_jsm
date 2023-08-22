@@ -1,9 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import PromptCard from './PromptCard';
 
-//import PromptCard from "./PromptCard";
-/*
+const PromptCardList = ({ data, handleTagClick }) => {
+  console.log('PromptCardList... data:', data);
+  return (
+    <div className="mt-16 prompt_layout">
       {data.map((post) => (
         <PromptCard
           key={post._id}
@@ -11,9 +14,8 @@ import { useState, useEffect } from 'react';
           handleTagClick={handleTagClick}
         />
       ))}
- */
-const PromptCardList = ({ data, handleTagClick }) => {
-  return <div className="mt-16 prompt_layout"></div>;
+    </div>
+  );
 };
 
 const Feed = () => {
@@ -24,17 +26,17 @@ const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
+  const handleSearchChange = (e) => {};
   const fetchPosts = async () => {
     const response = await fetch('/api/prompt');
     const data = await response.json();
-
     setAllPosts(data);
   };
 
   useEffect(() => {
     fetchPosts();
   }, []);
-
+  /*
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, 'i'); // 'i' flag for case-insensitive search
     return allPosts.filter(
@@ -64,7 +66,8 @@ const Feed = () => {
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
-
+*/
+  const handleTagClick = (tagName) => {};
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
@@ -79,6 +82,11 @@ const Feed = () => {
       </form>
 
       {/* All Prompts */}
+      <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+    </section>
+  );
+};
+/**
       {searchText ? (
         <PromptCardList
           data={searchedResults}
@@ -87,8 +95,5 @@ const Feed = () => {
       ) : (
         <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
       )}
-    </section>
-  );
-};
-
+ */
 export default Feed;

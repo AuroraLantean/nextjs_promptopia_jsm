@@ -35,9 +35,9 @@ export const connectToDB = async () => {
 
     await mongoose.connect(connStr, {
       dbName: 'share_prompt',
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
+      //useNewUrlParser: true,
+      //useUnifiedTopology: true,
+      //useCreateIndex: true,
     });
 
     isConnected = true;

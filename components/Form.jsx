@@ -40,7 +40,7 @@ function Form({ type, post, setPost, isSubmitting, handleSubmit }) {
             value={post.tag}
             onChange={(e) => setPost({ ...post, tag: e.target.value })}
             type="text"
-            placeholder="#Tag"
+            placeholder="Tag without #"
             required
             className="form_input"
           />

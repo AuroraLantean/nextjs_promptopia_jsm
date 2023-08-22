@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Features
+
+CRUD of MongoDB
+
+## Search Functions
+
+- Search by prompt
+- Search by tag
+- Search by username
+
+- Show all post by clicking on a tag
+- Show all posts by a user via clicking in a new URL
 
 ## Getting Started
 

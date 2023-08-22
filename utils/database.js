@@ -31,7 +31,7 @@ export const connectToDB = async () => {
     const dbpassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 
     const connStr = `mongodb+srv://${dbusername}:${dbpassword}@${process.env.MONGODB_CLUSTER}.${process.env.MONGODB_URLX}`;
-    console.log('connStr:', connStr);
+    //console.log('connStr:', connStr);
 
     await mongoose.connect(connStr, {
       dbName: 'share_prompt',

@@ -23,20 +23,9 @@ const Feed = () => {
 
   // Search states
   const [searchText, setSearchText] = useState('');
-  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [searchTimeoutId, setSearchTimeoutId] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
-  const handleSearchChange = (e) => {};
-  const fetchPosts = async () => {
-    const response = await fetch('/api/prompt');
-    const data = await response.json();
-    setAllPosts(data);
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-  /*
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, 'i'); // 'i' flag for case-insensitive search
     return allPosts.filter(
@@ -48,11 +37,11 @@ const Feed = () => {
   };
 
   const handleSearchChange = (e) => {
-    clearTimeout(searchTimeout);
+    clearTimeout(searchTimeoutId);
     setSearchText(e.target.value);
 
     // debounce method
-    setSearchTimeout(
+    setSearchTimeoutId(
       setTimeout(() => {
         const searchResult = filterPrompts(e.target.value);
         setSearchedResults(searchResult);
@@ -60,14 +49,23 @@ const Feed = () => {
     );
   };
 
+  const fetchPosts = async () => {
+    const response = await fetch('/api/prompt');
+    const data = await response.json();
+    setAllPosts(data);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   const handleTagClick = (tagName) => {
     setSearchText(tagName);
 
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
-*/
-  const handleTagClick = (tagName) => {};
+
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
@@ -82,11 +80,6 @@ const Feed = () => {
       </form>
 
       {/* All Prompts */}
-      <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-    </section>
-  );
-};
-/**
       {searchText ? (
         <PromptCardList
           data={searchedResults}
@@ -95,5 +88,8 @@ const Feed = () => {
       ) : (
         <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
       )}
- */
+    </section>
+  );
+};
+
 export default Feed;
